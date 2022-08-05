@@ -3,13 +3,17 @@
 # 功能：给女朋友发早安和土味情话
 loveMsg:
   # 与女朋友相识的日子
-  start_stamp: 2021-03-26
+  start_stamp: 2012-09-01
+  # 女朋友生日, 默认农历
+  birthday: 1997-10-16
+  # 自己生日, 默认农历
+  birthday_self: 1997-10-03
   # 女朋友所在城市（不要带‘市’）
-  city_name: 蚌埠
+  city_name: 长沙
   # 对女朋友的爱称
-  girl_name: 鱼崽
+  girl_name: 佳猪猪
   # 对自己的称呼
-  boy_name: 崽崽
+  boy_name: 小猴子
   # 点击卡片详情地址
   card_url: https://api.vvhan.com/api/60s
   # 天气生活指数提示（默认开启）
