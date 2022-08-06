@@ -1340,6 +1340,3 @@ dotenv__default.config();
 schedule.scheduleJob("1 30 8 * * *", () => {
   goodMorning();
 });
-schedule.scheduleJob("1 1 18 * * *", () => {
-  getNbaNews();
-});
