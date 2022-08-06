@@ -56,16 +56,14 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 温度：${lowest} ~ ${highest}\n`
 
   if (weather.includes('雨')) {
-    description += `降雨：${pop}% | ${pcpn}mm\n`
+    description = description + `降雨：${pop}% | ${pcpn}mm \n`
+  };
+  if (+pop > 50) {
+    description += `今天可能会下雨,小宝贝记得带伞哦~ \n`
+  } else if (Number(highest.replace('℃', '')) > 30) {
+    description += `啊好热好热~, 热死了~~, 宝贝记得做好防晒\n`
   }
-  if (pop > 50) {
-    description += `今天可能会下雨,小宝贝记得带伞哦\n`
-  }
-  // 生活指数提示
-//   if (CONFIG.weather_tips && tips) {
-//     description += `
-// ${tips}\n`
-//   }
+
 
   // 最高温度
   if (CONFIG.weather_tem && highest && +highest.replace('℃', '') <= 3) {
@@ -74,11 +72,16 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 今日最高温度仅为🥶 ${highest}，可冷可冷了~
 ${CONFIG.girl_name}可要注意保暖哦~\n`
   }
+  // 生活指数提示
+  // if (CONFIG.weather_tips && tips) {
+  //   description += `
+  // ${tips}\n`
+  // }
   // 温馨小提示
   description += `
     温馨小tip: 
-      距离臭老婆生日还有${wifeDuration}天
-      距离小猴子生日还有${selfDuration}天
+      ${wifeDuration !== 0 ? `距离臭老婆生日还有${wifeDuration}天` : '臭老婆生日快乐!!!！'}
+      {${selfDuration !== 0 ? `距离小猴子生日还有${selfDuration}天` : '给小猴子留下一个难忘的生日吧!'}}
   `
   // 内容末尾，自定义
   description += `

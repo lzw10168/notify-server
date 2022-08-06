@@ -20,14 +20,14 @@ export async function wxNotify(config: any) {
       id: WX_COMPANY_ID as string,
       secret: WX_APP_SECRET as string,
     })
-
+    console.log(accessToken)
     // 发送消息
     const defaultConfig = {
       msgtype: 'text',
       agentid: WX_APP_ID,
       ...config,
     }
-    const option = { ...defaultConfig, ...config }
+    const option = { ...defaultConfig }
     const res = await postMsg(accessToken, option)
     console.log('wx:信息发送成功！', res)
     return true

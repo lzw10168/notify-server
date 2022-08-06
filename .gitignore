@@ -57,7 +57,7 @@ jspm_packages/
 .cache
 
 # Nuxt generate
-dist
+# dist
 
 # IDE
 .idea

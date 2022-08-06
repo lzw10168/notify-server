@@ -33,6 +33,8 @@ enum LoveMsgURL {
   joke = 'http://api.tianapi.com/joke/index',
   // 一言
   oneWord = 'https://v1.hitokoto.cn/?encode=json',
+  // nba
+  NBANews = 'http://api.tianapi.com/nba/index'
 }
 
 class API {
@@ -131,6 +133,11 @@ class API {
       console.log(error)
       return null
     }
+  }
+  // nba新闻
+  async getNBANews() {
+    const res = await getTian({ url: LoveMsgURL.NBANews, params: { num: 10 } })
+    return res || []
   }
 }
 
