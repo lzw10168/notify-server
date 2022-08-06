@@ -81,7 +81,7 @@ ${CONFIG.girl_name}可要注意保暖哦~\n`
   description += `
     温馨小tip: 
       ${wifeDuration !== 0 ? `距离臭老婆生日还有${wifeDuration}天` : '臭老婆生日快乐!!!！'}
-      {${selfDuration !== 0 ? `距离小猴子生日还有${selfDuration}天` : '给小猴子留下一个难忘的生日吧!'}}
+      ${selfDuration !== 0 ? `距离小猴子生日还有${selfDuration}天` : '给小猴子留下一个难忘的生日吧!'}
   `
   // 内容末尾，自定义
   description += `
