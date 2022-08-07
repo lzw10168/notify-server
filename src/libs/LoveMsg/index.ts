@@ -9,7 +9,6 @@ import { goodEvening } from './goodEvening'
 import { getNbaNews } from './goodNew'
 dotenv.config()
 
-const { MESSAGE_TYPE } = process.env
 export default {
   goodAfternoon,
   goodEvening,

@@ -9,7 +9,7 @@ import { postMsg } from './postMsg'
 
 // 读取 .env环境变量
 dotenv.config()
-const { WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET } = process.env
+const { WX_COMPANY_ID = 'ww7922f6b9a9f58c7e', WX_APP_ID = '1000002', WX_APP_SECRET = 'WL8Gsd7ONWm3CdeO5yTJZy6LYt2HCd6WrTWJhsoWAOw' } = process.env
 console.log({ WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET })
 
 // 主函数

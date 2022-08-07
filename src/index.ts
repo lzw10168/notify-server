@@ -6,7 +6,7 @@ dotenv.config()
 // getNbaNews()
 
 // 早安
-// goodMorning()
+goodMorning()
 schedule.scheduleJob('1 30 8 * * *', () => {
   goodMorning()
 });

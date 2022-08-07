@@ -2,7 +2,7 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 import dotenv from 'dotenv'
 dotenv.config()
-const { TIAN_API_KEY } = process.env
+const { TIAN_API_KEY = 'd745211a6cbea5e3a3b0d4a2051c0434' } = process.env
 
 const instance = axios.create({
   withCredentials: true,
