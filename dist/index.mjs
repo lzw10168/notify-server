@@ -1316,11 +1316,10 @@ const LoveMsg = {
 const { goodAfternoon, goodEvening, goodMorning, getNbaNews } = LoveMsg;
 const schedule = require("node-schedule");
 dotenv.config();
-goodMorning();
 schedule.scheduleJob("1 30 8 * * *", () => {
   goodMorning();
 });
-schedule.scheduleJob("1 1 18 * * *", () => {
+schedule.scheduleJob("1 1 13 * * *", () => {
   goodAfternoon();
 });
 schedule.scheduleJob("1 30 23 * * *", () => {
