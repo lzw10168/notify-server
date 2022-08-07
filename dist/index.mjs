@@ -115,6 +115,7 @@ const API$1 = new API();
 const getConfig = () => {
   console.log("\u914D\u7F6E\u6587\u4EF6\u8DEF\u5F84\uFF1A", path.resolve(process.cwd(), "./config.yml"));
   const file = fs.readFileSync(path.resolve(process.cwd(), "./config.yml"), "utf8");
+  console.log("\u914D\u7F6E\u6587\u4EF6:", YAML.parse(file));
   return YAML.parse(file);
 };
 
@@ -322,15 +323,16 @@ function randomFromArray(array = eText) {
 }
 function getWeekdayText() {
   const arr = [
+    `\u{1F61B}\u5E78\u798F\u5468\u65E5\u2764\uFE0F, \u4E0D\u8981\u7126\u8651,\u79BB\u5468\u4E00\u8FD8\u6709\u5F88\u591A\u4E2A\u5C0F\u65F6`,
     `\u661F\u671F\u4E00\u{1F629}: \u6CA1\u4E8B\u6CA1\u4E8B\uFF0C\u6491\u4E00\u4E0B\u9A6C\u4E0A\u4E00\u5468\u5C31\u8FC7\u53BB\u4E86`,
     `\u661F\u671F\u4E8C\u{1F627}: \u4E24\u5929\u7ED3\u675F\u4E86\uFF0C\u5468\u4E09\u8FC7\u5B8C\u56DB\u820D\u4E94\u5165\u53C8\u662F\u4E00\u5468\uFF01`,
     `\u661F\u671F\u4E09\u{1F610}: \u8FC7\u534A\u4E86\u8FC7\u534A\u4E86\uFF01\u518D\u575A\u6301\u4E0B\u9A6C\u4E0A\u660E\u5929\u8FC7\u5B8C\u5C31\u662F\u5468\u4E94\uFF01`,
     `\u{1F525}\u{1F414}\u{1F414}\u{1F525} KFC Fucking Crazy Thursday Vme50!!!\u4E00\u5468\u7EC8\u4E8E\u5FEB\u8FC7\u53BB\u4E86\uFF01\u633A\u4F4F\uFF01`,
     `\u{1F60F}\u5468\u4E94\uFF01\uFF01\uFF01, \u60F3\u60F3\u665A\u4E0A\u51C6\u5907\u5403\u70B9\u5565~`,
-    `\u{1F917}\u5FEB\u4E50\u5468\u516D\u2764\uFE0F, \u5F00\u5F00\u5FC3\u5FC3\u7761\u4E2A\u597D\u89C9\uFF01`,
-    `\u{1F61B}\u5E78\u798F\u5468\u65E5\u2764\uFE0F, \u4E0D\u8981\u7126\u8651,\u79BB\u5468\u4E00\u8FD8\u6709\u5F88\u591A\u4E2A\u5C0F\u65F6`
+    `\u{1F917}\u5FEB\u4E50\u5468\u516D\u2764\uFE0F, \u5F00\u5F00\u5FC3\u5FC3\u7761\u4E2A\u597D\u89C9\uFF01`
   ];
-  return arr[new Date().getDay() - 1];
+  const weekday = dayjs().day();
+  return arr[weekday];
 }
 function getRandomName() {
   const arr = ["\u81ED\u8001\u5A46", "\u4F73\u732A\u{1F437}", "\u{1F437}\u{1F437}\u{1F437}", "\u8001\u5A46\u5927\u4EBA", "\u5C0F\u91CE\u540C\u5B66", "\u61A8\u6279\u8001\u5A46", "\u5C0F\u5B9D\u8D1D"];
@@ -1174,7 +1176,7 @@ ${CONFIG$1.girl_name}\u53EF\u8981\u6CE8\u610F\u4FDD\u6696\u54E6~
   description += `
     \u6E29\u99A8\u5C0Ftip: 
       ${wifeDuration !== 0 ? `\u8DDD\u79BB\u81ED\u8001\u5A46\u751F\u65E5\u8FD8\u6709${wifeDuration}\u5929` : "\u81ED\u8001\u5A46\u751F\u65E5\u5FEB\u4E50!!!\uFF01"}
-      {${selfDuration !== 0 ? `\u8DDD\u79BB\u5C0F\u7334\u5B50\u751F\u65E5\u8FD8\u6709${selfDuration}\u5929` : "\u7ED9\u5C0F\u7334\u5B50\u7559\u4E0B\u4E00\u4E2A\u96BE\u5FD8\u7684\u751F\u65E5\u5427!"}}
+      ${selfDuration !== 0 ? `\u8DDD\u79BB\u5C0F\u7334\u5B50\u751F\u65E5\u8FD8\u6709${selfDuration}\u5929` : "\u7ED9\u5C0F\u7334\u5B50\u7559\u4E0B\u4E00\u4E2A\u96BE\u5FD8\u7684\u751F\u65E5\u5427!"}
   `;
   description += `
   [ \u70B9\u6211\u6709\u60CA\u559C ] \u{1F49A} \u{1F496} \u{1F437} \u{1F412}${randomFromArray()} `;
@@ -1239,7 +1241,8 @@ const goodMorning$1 = async () => {
 };
 
 const goodAfternoon$1 = async () => {
-  const res = await API$1.getJoke();
+  let res = await API$1.getJoke();
+  res = res.slice(0, 2);
   let text = "\u4ECA\u65E5\u4EFD\u5348\u5B89\u6765\u55BD:\n";
   text += `
 \u8BF7\u6B23\u8D4F\u4EE5\u4E0B\u96F7\u4EBA\u7B11\u8BDD\u{1F61D}
@@ -1276,21 +1279,12 @@ const newsTemplate = (list) => {
   };
 };
 
-const getNews = async () => {
-  try {
-    const todayTopNews = await API$1.getTianTopNews();
-    const template = newsTemplate(todayTopNews.slice(0, 8));
-    await wxNotify(template);
-  } catch (error) {
-    console.log("goodEvening", error);
-  }
-};
 const getStory = async () => {
   const res = await API$1.getStorybook();
   const template = {
     msgtype: "text",
     text: {
-      content: `\u7ED9\u81ED\u8001\u5A46\u7684\u4ECA\u65E5\u4EFD\u7761\u524D\u6545\u4E8B\u6765\u55BD\uFF1A
+      content: `\u7ED9\u81ED\u8001\u5A46\u7684\u4ECA\u65E5\u4EFD\u7761\u524D\u665A\u5B89\u6545\u4E8B\u6765\u55BD\uFF1A
 \u{1F311}\u{1F312}\u{1F313}\u{1F314}\u{1F315}\u{1F31D}\u{1F61B}
 
 \u300E${res.title}\u300F
@@ -1301,7 +1295,6 @@ ${res.content}`
 };
 const goodEvening$1 = async () => {
   await getStory();
-  await getNews();
 };
 
 const getNbaNews$1 = async () => {
@@ -1326,4 +1319,10 @@ const schedule = require("node-schedule");
 dotenv.config();
 schedule.scheduleJob("1 30 8 * * *", () => {
   goodMorning();
+});
+schedule.scheduleJob("1 1 18 * * *", () => {
+  goodAfternoon();
+});
+schedule.scheduleJob("1 30 23 * * *", () => {
+  goodEvening();
 });
