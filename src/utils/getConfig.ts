@@ -10,5 +10,6 @@ import YAML from 'yaml'
 export const getConfig = () => {
   console.log('配置文件路径：', path.resolve(process.cwd(), './config.yml'))
   const file = fs.readFileSync(path.resolve(process.cwd(), './config.yml'), 'utf8')
+  console.log('配置文件:', YAML.parse(file))
   return YAML.parse(file)
 }

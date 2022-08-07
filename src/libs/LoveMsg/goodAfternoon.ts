@@ -5,9 +5,9 @@
 import API from '../../api/loveMsg'
 import { wxNotify } from '../WxNotify'
 
-export const goodAfternoon = async() => {
-  const res = await API.getJoke()
-
+export const goodAfternoon = async () => {
+  let res = await API.getJoke()
+  res = res.slice(0, 2)
   let text = '今日份午安来喽:\n'
 
   text += `

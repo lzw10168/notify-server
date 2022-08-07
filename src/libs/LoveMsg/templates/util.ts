@@ -145,14 +145,16 @@ export function randomFromArray(array: any[] = eText) {
 }
 // 获取星期几语录
 export function getWeekdayText() {
-  const arr = [`星期一😩: 没事没事，撑一下马上一周就过去了`,
+  const arr = [`😛幸福周日❤️, 不要焦虑,离周一还有很多个小时`,
+    `星期一😩: 没事没事，撑一下马上一周就过去了`,
     `星期二😧: 两天结束了，周三过完四舍五入又是一周！`,
     `星期三😐: 过半了过半了！再坚持下马上明天过完就是周五！`,
     `🔥🐔🐔🔥 KFC Fucking Crazy Thursday Vme50!!!一周终于快过去了！挺住！`,
     `😏周五！！！, 想想晚上准备吃点啥~`,
     `🤗快乐周六❤️, 开开心心睡个好觉！`,
-    `😛幸福周日❤️, 不要焦虑,离周一还有很多个小时`]
-  return arr[new Date().getDay() - 1]
+  ]
+  const weekday = dayjs().day()
+  return arr[weekday]
 }
 // 返回随机称呼
 export function getRandomName() {
