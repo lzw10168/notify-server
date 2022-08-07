@@ -8,7 +8,7 @@ import duration from 'dayjs/plugin/duration';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 
 dotenv.config();
-const { TIAN_API_KEY } = process.env;
+const { TIAN_API_KEY = "d745211a6cbea5e3a3b0d4a2051c0434" } = process.env;
 const instance = axios.create({
   withCredentials: true,
   timeout: 3e4
@@ -150,7 +150,7 @@ const postMsg = async (accessToken, config) => {
 };
 
 dotenv.config();
-const { WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET } = process.env;
+const { WX_COMPANY_ID = "ww7922f6b9a9f58c7e", WX_APP_ID = "1000002", WX_APP_SECRET = "WL8Gsd7ONWm3CdeO5yTJZy6LYt2HCd6WrTWJhsoWAOw" } = process.env;
 console.log({ WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET });
 async function wxNotify(config) {
   try {
@@ -1306,7 +1306,6 @@ const getNbaNews$1 = async () => {
 };
 
 dotenv.config();
-process.env;
 const LoveMsg = {
   goodAfternoon: goodAfternoon$1,
   goodEvening: goodEvening$1,
@@ -1317,6 +1316,7 @@ const LoveMsg = {
 const { goodAfternoon, goodEvening, goodMorning, getNbaNews } = LoveMsg;
 const schedule = require("node-schedule");
 dotenv.config();
+goodMorning();
 schedule.scheduleJob("1 30 8 * * *", () => {
   goodMorning();
 });
