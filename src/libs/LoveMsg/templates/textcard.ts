@@ -86,8 +86,10 @@ ${CONFIG.girl_name}可要注意保暖哦~\n`
   // 内容末尾，自定义
   description += `
   [ 点我有惊喜 ] 💚 💖 🐷 🐒${randomFromArray()} `
+  console.log('🚀 ~ file: textcard.ts ~ line 88 ~ textCardTemplate ~ description', description)
 
   const title = `这是我们相识的第 ${dateLength} 天`
+  // throw new Error("'''");
 
   return {
     msgtype: 'textcard',

@@ -16,7 +16,11 @@ export function getDaysToBirthday(date: Date = birthday): number {
   // 得到今年的公历生日日期
   const { date: _date } = calendar.lunar2solar(year, birthday_month, birthday_day, false)
   // 返回距离下次生日还有多少天
+
   const duration = dayjs().diff(_date, 'day')
+  // console.log('_date', _date, duration);
+  // throw new Error("端");
+
   return duration < 0 ? Math.abs(duration) : 365 + duration
 }
 export function getDaysToSelfBirthday(date: Date = birthday_self): number {
