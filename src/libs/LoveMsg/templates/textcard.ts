@@ -14,9 +14,7 @@ import { getConfig } from '../../../utils/getConfig'
 import { getDaysToBirthday } from '../../../utils/holiday'
 import { randomFromArray } from './util'
 const CONFIG = getConfig().loveMsg
-const selfDuration = getDaysToBirthday(CONFIG.birthday_self)
-const wifeDuration = getDaysToBirthday(CONFIG.birthday)
-console.log(selfDuration, 'selfDuration')
+
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
     area,
@@ -33,6 +31,8 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
     tips,
     lunarInfo,
   } = data
+  const selfDuration = getDaysToBirthday(CONFIG.birthday_self)
+  const wifeDuration = getDaysToBirthday(CONFIG.birthday)
   // 今日、恋爱天数
   const today = `${date.replace('-', '年').replace('-', '月')}日`
   const dateLength = dayjs(date).diff(CONFIG.start_stamp, 'day')
