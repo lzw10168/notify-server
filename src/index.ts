@@ -7,6 +7,8 @@ dotenv.config()
 
 // 早安
 // goodMorning()
+// goodEvening()
+
 schedule.scheduleJob('1 30 8 * * *', () => {
   // schedule.scheduleJob('1 * * * * *', () => {
   goodMorning()

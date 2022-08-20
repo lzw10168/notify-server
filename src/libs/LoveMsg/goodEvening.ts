@@ -32,17 +32,42 @@ const getNews = async () => {
 // 获今日取故事
 const getStory = async () => {
   const res = await API.getStorybook()
-  const template = {
-    msgtype: 'text',
-    text: {
-      content: `给臭老婆的今日份睡前晚安故事来喽：
-🌑🌒🌓🌔🌕🌝😛\n
-『${res.title}』
-${res.content}`,
-    },
+  //   const template = {
+  //     msgtype: 'text',
+  //     text: {
+  //       content: `给臭老婆的今日份睡前晚安故事来喽：
+  // 🌑🌒🌓🌔🌕🌝😛\n
+  // 『${res.title}』
+  // ${res.content}`,
+  //     },
+  //   }
+  console.log(res.content)
+  // 最长600字, 需要分割res.content 每段不超过600字, 多次发送
+  let num = res.content.length / 600
+  num = Math.floor(num) + 1
+  for (let i = 0; i < num; i++) {
+    const content = res.content.slice(i * 600, (i + 1) * 600)
+    const template = {
+      msgtype: 'text',
+      text: {
+        content: '',
+      },
+    }
+    if (i === 0) {
+      template.text.content = `给臭老婆的今日份睡前晚安故事来喽：
+      🌑🌒🌓🌔🌕🌝😛\n
+      『${res.title}』
+      ${res.content}`
+    } else {
+      template.text.content = content
+    }
+    await wxNotify(template)
+    console.log(template)
   }
+  // console.log('template', template);
+  // console.log(res.content.length);
 
-  await wxNotify(template)
+
 }
 
 // 执行函数
