@@ -14,7 +14,7 @@ import { getConfig } from '../../../utils/getConfig'
 import { getDaysToBirthday } from '../../../utils/holiday'
 import { randomFromArray } from './util'
 const CONFIG = getConfig().loveMsg
-
+const { start_stamp, birthday, birthday_self, new_year } = CONFIG
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
     area,
@@ -33,6 +33,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   } = data
   const selfDuration = getDaysToBirthday(CONFIG.birthday_self)
   const wifeDuration = getDaysToBirthday(CONFIG.birthday)
+  const newYearDuration = getDaysToBirthday(new_year)
   // 今日、恋爱天数
   const today = `${date.replace('-', '年').replace('-', '月')}日`
   const dateLength = dayjs(date).diff(CONFIG.start_stamp, 'day')
@@ -82,6 +83,7 @@ ${CONFIG.girl_name}可要注意保暖哦~\n`
     温馨小tip: 
       ${wifeDuration !== 0 ? `距离臭老婆生日还有${wifeDuration}天` : '臭老婆生日快乐!!!！'}
       ${selfDuration !== 0 ? `距离小猴子生日还有${selfDuration}天` : '给小猴子留下一个难忘的生日吧!'}
+      ${newYearDuration !== 0 ? `距离2023年新年还有${newYearDuration}天` : '新年快乐,臭老婆!!!'}
   `
   // 内容末尾，自定义
   description += `

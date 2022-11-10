@@ -4,10 +4,12 @@
 loveMsg:
   # 与女朋友相识的日子
   start_stamp: 2012-09-01
-  # 女朋友生日, 默认农历
-  birthday: 1997-10-16
+  # 女朋友生日, 公
+  birthday: 2023-11-28
   # 自己生日, 默认农历
-  birthday_self: 1997-10-03
+  birthday_self: 2023-11-15
+  #过年
+  new_year: 2023-01-22
   # 女朋友所在城市（不要带‘市’）
   city_name: 长沙
   # 对女朋友的爱称
