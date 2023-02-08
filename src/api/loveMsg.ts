@@ -1,4 +1,5 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
 import { getTian } from '../utils/http'
 
 /**
@@ -34,7 +35,9 @@ enum LoveMsgURL {
   // 一言
   oneWord = 'https://v1.hitokoto.cn/?encode=json',
   // nba
-  NBANews = 'http://api.tianapi.com/nba/index'
+  NBANews = 'http://api.tianapi.com/nba/index',
+  // 节假日
+  holiday = 'https://apis.tianapi.com/jiejiari/index',
 }
 
 class API {
@@ -138,6 +141,26 @@ class API {
   async getNBANews() {
     const res = await getTian({ url: LoveMsgURL.NBANews, params: { num: 10 } })
     return res || []
+  }
+
+  // 节假日
+  async getHoliday() {
+    const date = dayjs().format('YYYY-MM-DD')
+    const res = await getTian({ url: LoveMsgURL.holiday, params: { date, type: 1 } })
+    let data = null;
+    if (res && res.list) {
+      for (let i = 0; i < res.list.length; i++) {
+        const holidayInfo = res.list[i];
+        // 判断holidayInfo.wage 是否大于date
+        if (dayjs(holidayInfo.wage).isAfter(date)) {
+          // 差多少天
+          holidayInfo.diffDay = dayjs(holidayInfo.wage).diff(date, 'day')
+          data = holidayInfo
+          break;
+        }
+      }
+      return data
+    }
   }
 }
 

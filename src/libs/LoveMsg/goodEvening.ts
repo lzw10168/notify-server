@@ -32,16 +32,6 @@ const getNews = async () => {
 // 获今日取故事
 const getStory = async () => {
   const res = await API.getStorybook()
-  //   const template = {
-  //     msgtype: 'text',
-  //     text: {
-  //       content: `给臭老婆的今日份睡前晚安故事来喽：
-  // 🌑🌒🌓🌔🌕🌝😛\n
-  // 『${res.title}』
-  // ${res.content}`,
-  //     },
-  //   }
-  console.log(res.content)
   // 最长600字, 需要分割res.content 每段不超过600字, 多次发送
   let num = res.content.length / 600
   num = Math.floor(num) + 1
@@ -62,10 +52,7 @@ const getStory = async () => {
       template.text.content = content
     }
     await wxNotify(template)
-    console.log(template)
   }
-  // console.log('template', template);
-  // console.log(res.content.length);
 
 
 }

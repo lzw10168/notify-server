@@ -6,7 +6,7 @@ dotenv.config()
 // getNbaNews()
 
 // 早安
-// goodMorning()
+goodMorning()
 // goodEvening()
 
 schedule.scheduleJob('1 30 8 * * *', () => {
@@ -14,12 +14,12 @@ schedule.scheduleJob('1 30 8 * * *', () => {
   goodMorning()
 });
 // 午安
-schedule.scheduleJob('1 1 13 * * *', () => {
-  // getNbaNews()
-  goodAfternoon()
-});
+// schedule.scheduleJob('1 1 13 * * *', () => {
+//   // getNbaNews()
+//   goodAfternoon()
+// });
 // 晚安
-schedule.scheduleJob('1 30 23 * * *', () => {
+schedule.scheduleJob('1 30 22 * * *', () => {
   goodEvening()
 })
 // 早安、午安、晚安 => 由环境变量控制

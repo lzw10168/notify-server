@@ -30,6 +30,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
     pcpn,
     tips,
     lunarInfo,
+    holiday
   } = data
   const selfDuration = getDaysToBirthday(CONFIG.birthday_self)
   const wifeDuration = getDaysToBirthday(CONFIG.birthday)
@@ -57,7 +58,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 温度：${lowest} ~ ${highest}\n`
 
   if (weather.includes('雨')) {
-    description = description + `降雨：${pop}% | ${pcpn}mm \n`
+    description = description + `降雨：${pop || '10'}% | ${pcpn || '10'}mm \n`
   };
   if (+pop > 50) {
     description += `今天可能会下雨,小宝贝记得带伞哦~ \n`
@@ -73,17 +74,15 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 今日最高温度仅为🥶 ${highest}，可冷可冷了~
 ${CONFIG.girl_name}可要注意保暖哦~\n`
   }
-  // 生活指数提示
-  // if (CONFIG.weather_tips && tips) {
-  //   description += `
-  // ${tips}\n`
-  // }
-  // 温馨小提示
+  const {
+    name,
+    diffDay
+  } = holiday
   description += `
     温馨小tip: 
       ${wifeDuration !== 0 ? `距离臭老婆生日还有${wifeDuration}天` : '臭老婆生日快乐!!!！'}
       ${selfDuration !== 0 ? `距离小猴子生日还有${selfDuration}天` : '给小猴子留下一个难忘的生日吧!'}
-      ${newYearDuration !== 0 ? `距离2023年新年还有${newYearDuration}天` : '新年快乐,臭老婆!!!'}
+      ${`距离${name}假期还有${diffDay}天`}
   `
   // 内容末尾，自定义
   description += `
@@ -91,7 +90,6 @@ ${CONFIG.girl_name}可要注意保暖哦~\n`
   console.log('🚀 ~ file: textcard.ts ~ line 88 ~ textCardTemplate ~ description', description)
 
   const title = `这是我们相识的第 ${dateLength} 天`
-  // throw new Error("'''");
 
   return {
     msgtype: 'textcard',

@@ -6,7 +6,7 @@
 import dayjs, { weekToday } from '../../../utils/dayjs'
 import { getRandomName, getWeekdayText } from './util'
 export const textTemplate = (data: TextTemplateProps) => {
-  const { caiHongpi, sayLove, songLyrics, oneMagazines, netEaseCloud, oneWord, dayEnglish } = data
+  const { caiHongpi, sayLove, songLyrics, oneMagazines, netEaseCloud, oneWord, dayEnglish, holiday } = data
   let text = `早安呀，我可爱的${getRandomName()}\n`
 
   text += `\n${getWeekdayText()}\n`
@@ -19,16 +19,6 @@ export const textTemplate = (data: TextTemplateProps) => {
     text += `\n${sayLove.content}\n`
   }
 
-  // 诗句
-  //   if (songLyrics) {
-  //     text += `
-  // 『${songLyrics.source}』${songLyrics.content}\n`
-  //   }
-
-  //   if (oneMagazines) {
-  //     text += `
-  // 『ONE杂志』${oneMagazines.word}\n`
-  //   }
 
   if (netEaseCloud) {
     text += `

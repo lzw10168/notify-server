@@ -15,17 +15,3 @@ export default {
   goodMorning,
   getNbaNews
 }
-// export default function main() {
-//   if (MESSAGE_TYPE === 'goodAfternoon') {
-//     // 午安
-//     goodAfternoon()
-//   }
-//   else if (MESSAGE_TYPE === 'goodEvening') {
-//     // 晚安
-//     goodEvening()
-//   }
-//   else {
-//     // 早安
-//     goodMorning()
-//   }
-// }

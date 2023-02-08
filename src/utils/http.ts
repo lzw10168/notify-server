@@ -15,7 +15,7 @@ instance.interceptors.response.use(
     // 正确状态
     // TODO: 这里只针对符合该条件的接口
     if (res.code === 200)
-      return res.newslist
+      return res.newslist || res.result
 
     return undefined
   },
@@ -51,8 +51,8 @@ export function getTian<T = any>(
   config: AxiosRequestConfig,
   options?: AxiosRequestConfig,
 ): Promise<T> {
-  return request(
-    { ...config, params: { ...(config.params || {}), key: TIAN_API_KEY }, method: 'GET' },
+  return get(
+    { ...config, params: { ...(config.params || {}), key: TIAN_API_KEY } },
     options,
   )
 }

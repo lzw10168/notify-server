@@ -18,14 +18,12 @@ const goodWord = async () => {
       API.getSaylove(), // 土味情话
       API.getCaihongpi(), // 彩虹屁
       API.getOneWord(), // 一言
-      API.getSongLyrics(), // 最美宋词
-      API.getOneMagazines(), // one杂志
       API.getNetEaseCloud(), // 网易云热评
       API.getDayEnglish(), // 每日英语
     ])
-    console.log('dataSource', dataSource)
+    // console.log('dataSource', dataSource)
     // 过滤掉异常数据
-    const [sayLove, caiHongpi, oneWord, songLyrics, oneMagazines, netEaseCloud, dayEnglish] =
+    const [sayLove, caiHongpi, oneWord, songLyrics, oneMagazines, netEaseCloud, dayEnglish, holiday] =
       dataSource.map((n) => (n.status === 'fulfilled' ? n.value : null))
 
     // 对象写法
@@ -37,6 +35,7 @@ const goodWord = async () => {
       oneMagazines,
       netEaseCloud,
       dayEnglish,
+      holiday
     }
 
     const template = textTemplate(data)
@@ -54,10 +53,10 @@ const weatherInfo = async () => {
     const weather = await API.getWeather(CONFIG.city_name)
     if (weather) {
       const lunarInfo = await API.getLunarDate(weather.date)
-      const template = textCardTemplate({ ...weather, lunarInfo })
+      const holiday = await API.getHoliday()
+      const template = textCardTemplate({ ...weather, lunarInfo, holiday })
 
       // 发送消息
-      console.log('template', template)
       await wxNotify(template)
     }
   } catch (error) {
